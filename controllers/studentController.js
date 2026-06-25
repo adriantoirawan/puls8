@@ -53,24 +53,44 @@ class StudentController {
    */
   static async postRescue(req, res) {
     try {
-      res.redirect('/student')
-      /* 
-       * TODO: HANDLE DISCORD PING FOR PEER RESCUE
-       * 1. Extract `taskId` from req.body.
-       * 2. Find the current student to get their `classId`.
-       * 3. Query the database to find a "Smart Peer":
-       *    - Another student in the EXACT SAME `classId`.
-       *    - Who has a Score of `>= 80` on this specific `taskId`.
-       *    - (Hint: use `include` with `Score` and `[Op.gte]: 80`).
-       * 4. If a peer is found, extract their `discordHandle` from their `Profile`.
-       * 5. Use the `discord.js` library to send a message to a channel tagging them.
-       *    // [REQ: Explore - 2. Membuat fitur MVP]
-       * 6. Redirect back to /student.
-       * 
-       * KEYWORDS TO GOOGLE: "discord.js send message to channel", "Sequelize Op.gte"
-       * DOCS: https://discordjs.guide/
-       */
-       
+      const { taskId } = req.body;
+      const currentStudent = await User.findByPk(req.session.userId, {
+        include: Profile
+      });
+
+      if (!currentStudent) {
+        return res.redirect('/login?error=Session+expired.+Please+login+again.');
+      }
+
+      const { Op } = require('sequelize');
+      const smartPeer = await User.findOne({
+        where: { classId: currentStudent.classId },
+        include: [
+          { model: Profile },
+          { 
+            model: Task, 
+            where: { id: taskId }, 
+            through: { where: { score: { [Op.gte]: 80 } } } 
+          }
+        ]
+      });
+
+      if (smartPeer && smartPeer.Profile) {
+        const { WebhookClient } = require('discord.js');
+        try {
+            const webhookClient = new WebhookClient({ url: 'https://discord.com/api/webhooks/1519818281094221955/0hvX8HHNAFX764sLo_g4R1ZQiYir4yJ8Zhd5CyG3NIOwT-LQgbUVogD2Q1OjY5rgmPBq' });
+            
+            const taskName = smartPeer.Tasks[0].name;
+            const strugglingStudent = currentStudent.Profile ? `@${currentStudent.Profile.discordHandle}` : currentStudent.email;
+
+            await webhookClient.send({
+                content: `🚨 **RESCUE FLARE DEPLOYED** 🚨\n${strugglingStudent} is completely stuck on **"${taskName}"** and needs your help, @${smartPeer.Profile.discordHandle}! You scored an 80+ on this, so you are their best hope!`,
+            });
+        } catch(discordErr) {
+            console.log(discordErr);
+        }
+      }
+
       res.redirect('/student');
     } catch (err) {
       console.log(err);

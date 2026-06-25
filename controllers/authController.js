@@ -45,23 +45,11 @@ class AuthController {
       // Dummy redirect to keep app flowing
       res.redirect('/login');
     } catch (err) {
-      // if(err.name === "SequelizeValidationError"){
-      //   return res.render("register", { error: err.errors[0].message })
-      // }
-      // if (err.name === "SequelizeUniqueConstraintError"){
-      //   return res.render("register", {error: "Email sudah terdaftar"})
-      // }
-      res.send(err)
-      /* 
-       * TODO: HANDLE SEQUELIZE VALIDATION ERRORS
-       * If the user submits an invalid email, Sequelize throws a `SequelizeValidationError`.
-       * You must catch this, extract `err.errors[0].message`, and pass it to `res.render('register', { error: extractedMessage })`.
-       * 
-       * PITFALL: Do not `res.send(err)` to the client! You must render the error nicely on the page.
-       */
-
-      // const dummyErrorData = { error: "Dummy register error. Build the validation logic!" };
-      // res.render('register', dummyErrorData);
+      if (err.name === 'SequelizeValidationError' || err.name === 'SequelizeUniqueConstraintError') {
+        const errorMessage = err.errors[0].message;
+        return res.render('register', { error: errorMessage });
+      }
+      res.send(err.message);
     }
   }
 
