@@ -4,7 +4,6 @@
       <div class="container mt-4">
          <h2 class="mb-4">Instructor Dashboard</h2>
 
-         <!-- Search Form -->
          <form action="/instructor" method="GET" class="mb-4">
             <div class="input-group">
                <input type="text" class="form-control" name="search" placeholder="Search student emails...">
@@ -12,7 +11,6 @@
             </div>
          </form>
 
-         <!-- Iterate over classData -->
          <% classData.forEach(cls => { %>
             <div class="card mb-4 shadow-sm">
                <div class="card-header bg-secondary text-white">
