@@ -1,4 +1,4 @@
 [
-  { "id": 1, "userId": 1, "discordHandle": "MasterSensei", "learningStyle": "Visual", "gritLevel": 5, "createdAt": "2026-06-24T00:00:00Z", "updatedAt": "2026-06-24T00:00:00Z" },
-  { "id": 2, "userId": 2, "discordHandle": "StudentOne", "learningStyle": "Kinesthetic", "gritLevel": 3, "createdAt": "2026-06-24T00:00:00Z", "updatedAt": "2026-06-24T00:00:00Z" }
+  { "userId": 1, "discordHandle": "MasterSensei", "learningStyle": "Visual", "gritLevel": 5, "createdAt": "2026-06-24T00:00:00Z", "updatedAt": "2026-06-24T00:00:00Z" },
+  { "userId": 2, "discordHandle": "StudentOne", "learningStyle": "Kinesthetic", "gritLevel": 3, "createdAt": "2026-06-24T00:00:00Z", "updatedAt": "2026-06-24T00:00:00Z" }
 ]
