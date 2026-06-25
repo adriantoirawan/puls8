@@ -29,6 +29,8 @@ class AuthController {
    */
   static async postRegister(req, res) {
     try {
+      const {email, password}= req.body
+      await User.create({email, password, role:"student"})
       /* 
        * TODO: CREATE A NEW USER
        * 1. Get `email` and `password` from `req.body`.
@@ -43,6 +45,13 @@ class AuthController {
       // Dummy redirect to keep app flowing
       res.redirect('/login');
     } catch (err) {
+      // if(err.name === "SequelizeValidationError"){
+      //   return res.render("register", { error: err.errors[0].message })
+      // }
+      // if (err.name === "SequelizeUniqueConstraintError"){
+      //   return res.render("register", {error: "Email sudah terdaftar"})
+      // }
+      res.send(err)
       /* 
        * TODO: HANDLE SEQUELIZE VALIDATION ERRORS
        * If the user submits an invalid email, Sequelize throws a `SequelizeValidationError`.
@@ -51,8 +60,8 @@ class AuthController {
        * PITFALL: Do not `res.send(err)` to the client! You must render the error nicely on the page.
        */
 
-      const dummyErrorData = { error: "Dummy register error. Build the validation logic!" };
-      res.render('register', dummyErrorData);
+      // const dummyErrorData = { error: "Dummy register error. Build the validation logic!" };
+      // res.render('register', dummyErrorData);
     }
   }
 
@@ -63,6 +72,7 @@ class AuthController {
    */
   static async getLogin(req, res) {
     try {
+      const error = req.query.error || null
       /*
        * TODO: HANDLE REDIRECT ERRORS
        * If an unauthorized user is redirected here by a global middleware, they will likely
@@ -84,6 +94,15 @@ class AuthController {
    */
   static async postLogin(req, res) {
     try {
+      const {email, password}= req.body
+      const user = await User.findOne({where: {email}})
+      if(!user){
+        return res.render("login", {error: "Email atau password salah"})
+      }
+      const isMatch = bcrypt.compareSync(password, user.password)
+      if(!isMatch){
+        return res.render("login", {error: "Email atau password salah"})
+      }
       /* 
        * TODO: AUTHENTICATE THE USER
        * 1. Extract `email` and `password` from `req.body`.
@@ -100,8 +119,8 @@ class AuthController {
 
 
       // Dummy logic to keep app flowing
-      req.session.userId = 999;
-      req.session.role = 'instructor'; // Or 'student'
+      req.session.userId = user.id;
+      req.session.role = user.role; // Or 'student'
 
       if (req.session.role === 'instructor') {
         res.redirect('/instructor');
@@ -121,12 +140,14 @@ class AuthController {
    */
   static async logout(req, res) {
     try {
+      req.session.destroy()
+      res.redirect("/login")
       /*
        * TODO: DESTROY SESSION
        * Use `req.session.destroy()` and then redirect to `/login`.
        */
 
-      res.redirect('/login');
+    
     } catch (err) {
       console.log(err);
       res.send(err.message);

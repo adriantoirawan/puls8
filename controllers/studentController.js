@@ -12,6 +12,15 @@ class StudentController {
    */
   static async getDashboard(req, res) {
     try {
+      const studentData = await User.findByPk(req.session.userId, {
+        include: [
+          {
+            model: Task,
+            through: {model: Score, attributes: ['score']}
+          },
+        ],
+      });
+
       /* 
        * TODO: FETCH CURRENT STUDENT DATA
        * 1. You need to find the User where id === req.session.userId.
@@ -45,6 +54,11 @@ class StudentController {
    */
   static async getRescue(req, res) {
     try {
+      const task = await Task.findAll()
+      res.render('student/rescue', {
+        task,
+        role: req.session.role,
+      });
       /* 
        * TODO: FETCH ALL TASKS
        * 1. We need a list of tasks to display in the dropdown on the Rescue page.
@@ -52,11 +66,11 @@ class StudentController {
        * 3. Pass this array to the view.
        */
       
-      const dummyTasks = [
-        { id: 1, name: "OOP Paradigm" },
-        { id: 2, name: "PostgreSQL" },
-        { id: 3, name: "Express Servers" }
-      ];
+      // const dummyTasks = [
+      //   { id: 1, name: "OOP Paradigm" },
+      //   { id: 2, name: "PostgreSQL" },
+      //   { id: 3, name: "Express Servers" }
+      // ];
 
       res.render('student/rescue', { tasks: dummyTasks });
     } catch (err) {
@@ -72,6 +86,7 @@ class StudentController {
    */
   static async postRescue(req, res) {
     try {
+      res.redirect('/student')
       /* 
        * TODO: HANDLE DISCORD PING FOR PEER RESCUE
        * 1. Extract `taskId` from req.body.
