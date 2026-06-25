@@ -2,13 +2,13 @@
   <div class="container">
     <a class="navbar-brand" href="/">Puls8</a>
     <div>
-      <!-- 
-          TODO: DYNAMIC LINK FOR DASHBOARD
-          1. The `href` below should point to either `/instructor or /student` depending on the user role
-          2. Use EJS conditional logic (e.g., `<%% if (role === 'instructor') { %%>`) to render a link to `/instructor` or `/student` instead.
-          3. (Hint: Ensure you are passing `role` from `req.session` to your views in the controllers!)
-        -->
-      <a class="btn btn-outline-light me-2" href="#">Dashboard</a>
+      <% if (typeof role !== 'undefined') { %>
+        <% if (role === 'instructor') { %>
+          <a class="btn btn-outline-light me-2" href="/instructor">Dashboard</a>
+        <% } else if (role === 'student') { %>
+          <a class="btn btn-outline-light me-2" href="/student">Dashboard</a>
+        <% } %>
+      <% } %>
       <a class="btn btn-danger" href="/logout">Logout</a>
     </div>
   </div>
