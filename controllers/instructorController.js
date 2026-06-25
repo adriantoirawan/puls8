@@ -102,37 +102,25 @@ class InstructorController {
     try {
       const { id } = req.params;
       const { action } = req.body;
+
       const student = await User.findByPk(id);
+
       if (action === "moveUp") {
         student.phaseLevel += 1;
-        student.classId = null;
+        student.classId = null; // Return to waiting pool
         student.isRepeater = false;
+        
         await student.save();
+
       } else if (action === "repeat") {
-        student.classId = null;
+        student.classId = null; // Return to waiting pool
         student.isRepeater = true;
+        
         await student.save();
+        // HACKTIV8 DOESN'T DELETE SCORE IF A STUDENT REPEATS,
+        // but for the sake of satisfying promise chaining requirements, here we go
         await Score.destroy({ where: { userId: id } });
       }
-
-      /*
-       * TODO: PHASE RESOLUTION PROTOCOL
-       * 1. Extract the `id` of the student from `req.params`.
-       * 2. Extract the action (e.g., `moveUp` or `repeat`) from `req.body`.
-       * 3. Find the student using `User.findByPk()`.
-       * 4. If `moveUp`:
-       *    - Increment `phaseLevel` by 1.
-       *    - Set `classId` to `null` (returns them to waiting pool).
-       *    - Set `isRepeater` to `false`.
-       * 5. If `repeat`:
-       *    - Keep `phaseLevel` the same.
-       *    - Set `classId` to `null`.
-       *    - Set `isRepeater` to `true`.
-       *    - Find all `Scores` belonging to this user and `destroy()` them so they start fresh.
-       * 6. Save the student and redirect back to `/instructor`.
-       *
-       * // [REQ: Aplikasi - 8. Menggunakan mekanisme promise chaining]
-       */
 
       res.redirect("/instructor");
     } catch (err) {
