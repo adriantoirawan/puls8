@@ -1,0 +1,4 @@
+[
+  { "id": 1, "name": "Phase 1 - OOP", "phase": 1, "weight": 30, "createdAt": "2026-06-24T00:00:00Z", "updatedAt": "2026-06-24T00:00:00Z" },
+  { "id": 2, "name": "Phase 1 - Async & DB", "phase": 1, "weight": 30, "createdAt": "2026-06-24T00:00:00Z", "updatedAt": "2026-06-24T00:00:00Z" }
+]

@@ -1,0 +1,26 @@
+<%- include('../partials/header', { title: 'Instructor Dashboard - Puls8' }) %>
+   <%- include('../partials/navbar') %>
+
+      <div class="container mt-4">
+         <h2 class="mb-4">Instructor Dashboard</h2>
+
+         <!-- 
+    TODO: BUILD THE DASHBOARD VIEW
+    1. Render a search bar here. Ensure the form `action` points to `/instructor` and `method="GET"`.
+       The input field should have `name="search"`.
+
+    2. Iterate over `classData` to generate tables.
+       - Use `<%% classData.forEach(cls => { %%>` to loop over the classes.
+       - Inside the class loop, use `<%% cls.Users.forEach(user => { %%>` to loop over the students.
+       
+    3. **INSTANCE METHOD REQUIREMENT**: Inside your table row for each student, call the instance method you defined!
+       - `<td><%%= user.generateDossier() %%></td>`
+
+    TIP: Open `views/master.ejs` to copy-paste the exact HTML structure for Forms and Tables!
+  -->
+         <p class="text-muted border p-3">TODO: Build out the Instructor view using classData</p>
+
+         <%- include('../partials/debugData') %>
+      </div>
+
+      <%- include('../partials/footer') %>

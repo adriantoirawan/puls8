@@ -1,0 +1,4 @@
+[
+  { "id": 1, "email": "master@puls8.com", "password": "masterpassword", "role": "instructor", "classId": null, "phaseLevel": 0, "isRepeater": false, "createdAt": "2026-06-24T00:00:00Z", "updatedAt": "2026-06-24T00:00:00Z" },
+  { "id": 2, "email": "student1@puls8.com", "password": "password123", "role": "student", "classId": 1, "phaseLevel": 1, "isRepeater": false, "createdAt": "2026-06-24T00:00:00Z", "updatedAt": "2026-06-24T00:00:00Z" }
+]

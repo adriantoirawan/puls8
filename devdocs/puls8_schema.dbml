@@ -1,0 +1,65 @@
+// ==========================================
+// PULS8 - Classroom Tools for Hacktiv8 Instructors and Students
+// ==========================================
+
+Table Classes {
+  id SERIAL [pk]
+  name varchar [unique, not null, note: "e.g., PHASE-1-26-06"]
+  phaseLevel int [not null, note: "0, 1, 2, or 3"]
+  createdAt timestamp
+  updatedAt timestamp
+}
+
+Table Users {
+  id SERIAL [pk]
+  email varchar [unique, not null]
+  password varchar [not null]
+  role varchar [not null, default: 'student'] 
+  classId int [note: "If NULL, student is in the Waiting Pool"]
+  phaseLevel int [default: 0, note: "Current Phase (0-3)"]
+  isRepeater boolean [default: false, note: "True if retaking this phaseLevel"]
+  createdAt timestamp
+  updatedAt timestamp
+}
+
+Table Profiles {
+  id SERIAL [pk]
+  userId int [unique, not null] // Unique constraint enforces 1-to-1
+  discordHandle varchar 
+  learningStyle varchar [default: 'Unassessed']
+  gritLevel int [default: 0]
+  createdAt timestamp
+  updatedAt timestamp
+}
+
+Table Tasks {
+  id SERIAL [pk]
+  name varchar [not null]
+  phase int [not null]
+  weight int [not null, note: "Percentage weight for KKM math"]
+  createdAt timestamp
+  updatedAt timestamp
+}
+
+Table Scores {
+  id SERIAL [pk]
+  userId int [not null]
+  taskId int [not null]
+  score int [not null]
+  createdAt timestamp
+  updatedAt timestamp
+}
+
+// ==========================================
+// RELATIONSHIPS (Rubric Requirements)
+// ==========================================
+
+// 1:M - A Class has many Users (Students)
+Ref: Users.classId > Classes.id
+
+// 1:1 - A User has exactly one Profile
+Ref: Profiles.userId - Users.id
+
+// M:N - Users have many Tasks through Scores
+Ref: Scores.userId > Users.id
+Ref: Scores.taskId > Tasks.id

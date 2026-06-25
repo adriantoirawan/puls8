@@ -1,0 +1,72 @@
+<%- include('./partials/header', { title: 'Master Template Cheat Sheet' }) %>
+  <%- include('./partials/navbar') %>
+
+    <div class="container mt-4">
+      <h1 class="mb-4">Puls8 EJS Cheatsheet</h1>
+      <p class="lead">Copy paste and go!</p>
+
+      <!-- Debug data partials -->
+      <%- include('./partials/debugData') %>
+
+        <!-- Section: Form -->
+        <div class="card mb-4 shadow-sm">
+          <div class="card-header bg-primary text-white">Sample Form</div>
+          <div class="card-body">
+            <form action="#" method="POST">
+              <div class="mb-3">
+                <label class="form-label">Email Address</label>
+                <input type="email" class="form-control" name="email" placeholder="name@example.com">
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input type="password" class="form-control" name="password">
+              </div>
+              <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Section: Table -->
+        <div class="card mb-4 shadow-sm">
+          <div class="card-header bg-secondary text-white">Sample Data Table</div>
+          <div class="card-body">
+            <table class="table table-striped table-hover">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Role</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>John Doe</td>
+                  <td><span class="badge bg-info text-dark">Student</span></td>
+                  <td>
+                    <button class="btn btn-sm btn-primary">Edit</button>
+                    <button class="btn btn-sm btn-danger">Delete</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Section: Alerts & Buttons -->
+        <div class="card mb-4 shadow-sm">
+          <div class="card-header bg-dark text-white">Alerts & Buttons</div>
+          <div class="card-body">
+            <div class="alert alert-danger">This is an error alert!</div>
+            <div class="alert alert-success">This is a success alert!</div>
+            <hr>
+            <button class="btn btn-primary">Primary</button>
+            <button class="btn btn-secondary">Secondary</button>
+            <button class="btn btn-outline-dark">Outline Dark</button>
+          </div>
+        </div>
+
+    </div>
+
+    <%- include('./partials/footer') %>

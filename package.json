@@ -1,0 +1,33 @@
+{
+  "name": "puls8",
+  "version": "1.0.0",
+  "description": "Puls8 - Classroom Tools for Hacktiv8 Instructors and Students",
+  "homepage": "https://github.com/adriantoirawan/puls8#readme",
+  "bugs": {
+    "url": "https://github.com/adriantoirawan/puls8/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adriantoirawan/puls8.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "discord.js": "^14.26.4",
+    "ejs": "^6.0.1",
+    "express": "^5.2.1",
+    "express-session": "^1.19.0",
+    "pg": "^8.22.0",
+    "sequelize": "^6.37.8"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.6.5"
+  }
+}
