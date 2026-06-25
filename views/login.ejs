@@ -15,14 +15,34 @@
       <div class="alert alert-danger"><%%= error %%></div>
     <%% } %%>
   -->
-
-    <!-- 
-    TODO: BUILD THE LOGIN FORM
+    <% if (typeof error !== 'undefined' && error) { %>
+    <div class="alert alert-danger" role="alert">
+      <%= error %>
+    </div>
+  <% } %>
+ <div class="card mb-4 shadow-sm">
+          <div class="card-header bg-primary text-white">Sample Form</div>
+          <div class="card-body">
+            <form action="/login" method="POST">
+              <div class="mb-3">
+                <label class="form-label">Email Address</label>
+                <input type="email" class="form-control" name="email" placeholder="name@example.com">
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input type="password" class="form-control" name="password">
+              </div>
+              <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+          </div>
+        </div>
+    
+    <!-- TODO: BUILD THE LOGIN FORM
     Ensure your input names match what `req.body` expects in the controller!
     `<input name="email">` and `<input name="password">`
     
-    TIP: Open `views/master.ejs` to copy-paste the exact HTML structure for Forms!
-  -->
+    TIP: Open `views/master.ejs` to copy-paste the exact HTML structure for Forms! -->
+  
     <p class="text-muted text-center border p-3">Build your form here mapping to POST /login</p>
 
     <%- include('./partials/debugData') %>
