@@ -7,10 +7,12 @@ module.exports = (sequelize, DataTypes) => {
     }
     // [REQ: Aplikasi - 2. Static method di model]
     // Static method requirement
-    static async getActiveClasses() {
+    static async getActiveClasses(options = {}) {
       return await this.findAll({
+        ...options,
         where: {
-          phaseLevel: { [Op.gte]: 0 }
+          phaseLevel: { [Op.gte]: 0 },
+          ...options.where
         }
       });
     }
