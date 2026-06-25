@@ -14,9 +14,18 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     // [REQ: Aplikasi - 3. Instance method atau getter di model]
-    // Instance method requirement (generateDossier)
     generateDossier() {
-      return `Student ${this.email} is in Phase ${this.phaseLevel}. AI formatting logic goes here.`;
+      let repeaterStatus = "";
+      if (this.isRepeater === true) {
+        repeaterStatus = "(Repeating)";
+      }
+
+      let profileInfo = "No profile details yet.";
+      if (this.Profile) {
+        profileInfo = `Discord: ${this.Profile.discordHandle}, Style: ${this.Profile.learningStyle}, Grit: ${this.Profile.gritLevel}/5`;
+      }
+
+      return `Student ${this.email} (Phase ${this.phaseLevel}) ${repeaterStatus} - ${profileInfo}`;
     }
   }
   User.init(
@@ -74,7 +83,6 @@ module.exports = (sequelize, DataTypes) => {
         },
         afterCreate: async (user, options) => {
           if (user.role === "student") {
-            // Promise chaining or await
             await sequelize.models.Profile.create(
               { userId: user.id },
               { transaction: options.transaction },
