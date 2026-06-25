@@ -13,8 +13,11 @@ module.exports = {
       u.password = bcrypt.hashSync(u.password, salt);
       return u;
     });
-
-    await queryInterface.bulkInsert('Users', users, {});
+    const cleanUsers = data.map(el => {
+      delete el.id
+      return el
+    })
+    await queryInterface.bulkInsert('Users', cleanUsers, {});
   },
 
   async down (queryInterface, Sequelize) {

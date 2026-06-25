@@ -1,4 +1,4 @@
 [
-  { "id": 1, "name": "PHASE-1-JUNE", "phaseLevel": 1, "createdAt": "2026-06-24T00:00:00Z", "updatedAt": "2026-06-24T00:00:00Z" },
-  { "id": 2, "name": "PHASE-2-JULY", "phaseLevel": 2, "createdAt": "2026-06-24T00:00:00Z", "updatedAt": "2026-06-24T00:00:00Z" }
+  { "name": "PHASE-1-JUNE", "phaseLevel": 1, "createdAt": "2026-06-24T00:00:00Z", "updatedAt": "2026-06-24T00:00:00Z" },
+  { "name": "PHASE-2-JULY", "phaseLevel": 2, "createdAt": "2026-06-24T00:00:00Z", "updatedAt": "2026-06-24T00:00:00Z" }
 ]

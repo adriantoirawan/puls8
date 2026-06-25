@@ -4,23 +4,40 @@
       <div class="container mt-4">
          <h2 class="mb-4">Instructor Dashboard</h2>
 
-         <!-- 
-    TODO: BUILD THE DASHBOARD VIEW
-    1. Render a search bar here. Ensure the form `action` points to `/instructor` and `method="GET"`.
-       The input field should have `name="search"`.
+         <form action="/instructor" method="GET" class="mb-4">
+            <div class="input-group">
+               <input type="text" class="form-control" name="search" placeholder="Search student emails...">
+               <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+         </form>
 
-    2. Iterate over `classData` to generate tables.
-       - Use `<%% classData.forEach(cls => { %%>` to loop over the classes.
-       - Inside the class loop, use `<%% cls.Users.forEach(user => { %%>` to loop over the students.
-       
-    3. **INSTANCE METHOD REQUIREMENT**: Inside your table row for each student, call the instance method you defined!
-       - `<td><%%= user.generateDossier() %%></td>`
-
-    TIP: Open `views/master.ejs` to copy-paste the exact HTML structure for Forms and Tables!
-  -->
-         <p class="text-muted border p-3">TODO: Build out the Instructor view using classData</p>
-
-         <%- include('../partials/debugData') %>
+         <% classData.forEach(cls => { %>
+            <div class="card mb-4 shadow-sm">
+               <div class="card-header bg-secondary text-white">
+                  <h4 class="mb-0">Class: <%= cls.name %> (Phase <%= cls.phaseLevel %>)</h4>
+               </div>
+               <div class="card-body">
+                  <table class="table table-striped table-hover">
+                     <thead>
+                        <tr>
+                           <th>Student Email</th>
+                           <th>Phase</th>
+                           <th>Dossier</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <% cls.Users.forEach(user => { %>
+                           <tr>
+                              <td><%= user.email %></td>
+                              <td><%= user.phaseLevel %></td>
+                              <td><%= user.generateDossier() %></td>
+                           </tr>
+                        <% }) %>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+         <% }) %>
       </div>
 
       <%- include('../partials/footer') %>
