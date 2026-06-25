@@ -71,8 +71,6 @@ class StudentController {
       //   { id: 2, name: "PostgreSQL" },
       //   { id: 3, name: "Express Servers" }
       // ];
-
-      res.render('student/rescue', { tasks: dummyTasks });
     } catch (err) {
       console.log(err);
       res.send(err.message);

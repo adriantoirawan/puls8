@@ -4,19 +4,40 @@
     <div class="container mt-4">
       <h2 class="mb-4">Student Dashboard</h2>
 
-      <!-- 
-    TODO: BUILD THE STUDENT SCOREBOARD
-    1. Check if `studentData` and `studentData.Scores` exists.
-    2. Loop over the scores and render a table showing the Task Name, Weight, and Score.
-    3. You can even calculate the total average or KKM passing grade here!
-    
-    TIP: Open `views/master.ejs` to copy-paste the exact HTML structure for Tables!
-  -->
-      <p class="text-muted border p-3">TODO: Build out the Student view using studentData</p>
+      <div class="card mb-4 shadow-sm">
+        <div class="card-header bg-primary text-white">
+          <h4 class="mb-0">My Scores</h4>
+        </div>
+        <div class="card-body">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>Task Name</th>
+                <th>Weight</th>
+                <th>Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if (studentData && studentData.Scores) { %>
+                <% studentData.Scores.forEach(scoreObj => { %>
+                  <tr>
+                    <td><%= scoreObj.Task.name %></td>
+                    <td><%= scoreObj.Task.weight || 'N/A' %></td>
+                    <td><%= scoreObj.score %></td>
+                  </tr>
+                <% }) %>
+              <% } else { %>
+                <tr>
+                  <td colspan="3" class="text-center text-muted">No scores available.</td>
+                </tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+      </div>
 
       <a href="/student/rescue" class="btn btn-warning mt-3">Deploy Rescue Flare</a>
 
-      <%- include('../partials/debugData') %>
     </div>
 
     <%- include('../partials/footer') %>
