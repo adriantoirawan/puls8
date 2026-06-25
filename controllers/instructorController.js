@@ -1,5 +1,6 @@
-const { where } = require("sequelize");
 const { Class, User, Task, Score, Profile, Sequelize } = require("../models");
+const calculateKKM = require('../helpers/calculateKKM');
+const { where } = require("sequelize");
 const { Op } = Sequelize;
 
 /**
@@ -85,8 +86,17 @@ class InstructorController {
           ],
         },
       ];
+      
+      const classData = dummyClassData; // Temporarily map classData to dummyClassData
+      const kkmData = calculateKKM(classData);
+      const search = req.query.search;
 
-      res.render("instructor/dashboard", { classData: dummyClassData });
+      res.render('instructor/dashboard', {
+        search: search || '',
+        role: req.session.role,
+        classData: classData,
+        kkmData: kkmData
+      });
     } catch (err) {
       console.log(err);
       res.send(err.message);
