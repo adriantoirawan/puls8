@@ -32,25 +32,19 @@
 function calculateKKM(classData) {
   let studentTrajectories = {};
 
-  // Loop through every class
   classData.forEach(cls => {
-    // Loop through every student in the class
     if (cls.Users) {
       cls.Users.forEach(user => {
         let totalWeightedScore = 0;
         
-        // Loop through their nested Scores array (from dummy data or future eager load)
-        if (user.Scores) {
-          user.Scores.forEach(scoreObj => {
-            let score = scoreObj.score;
-            let weight = scoreObj.Task.weight;
-            
-            // Calculate the weighted score
+        if (user.Tasks) {
+          user.Tasks.forEach(task => {
+            let score = task.Score.score;
+            let weight = task.weight;
             totalWeightedScore += (score * (weight / 100));
           });
         }
         
-        // Store the result mapped to the user's ID
         studentTrajectories[user.id] = totalWeightedScore;
       });
     }
