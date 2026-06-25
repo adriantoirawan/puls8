@@ -21,26 +21,7 @@ class StudentController {
         ],
       });
 
-      /* 
-       * TODO: FETCH CURRENT STUDENT DATA
-       * 1. You need to find the User where id === req.session.userId.
-       * 2. Eager load their associated Tasks (through Scores).
-       * 
-       * KEYWORDS TO GOOGLE: "Sequelize findAll include", "Sequelize M:N association queries"
-       * DOCS: https://sequelize.org/docs/v6/advanced-association-concepts/eager-loading/
-       * 
-       * PITFALL: Don't fetch all users! Only fetch the logged-in student.
-       */
-      
-      const dummyStudentData = {
-        email: "student@puls8.com",
-        Scores: [
-          { score: 95, Task: { name: "OOP Paradigm" } },
-          { score: 80, Task: { name: "PostgreSQL" } }
-        ]
-      };
-
-      res.render('student/dashboard', { studentData: dummyStudentData });
+      res.render('student/dashboard', { studentData });
     } catch (err) {
       console.log(err);
       res.send(err.message);
@@ -59,18 +40,6 @@ class StudentController {
         task,
         role: req.session.role,
       });
-      /* 
-       * TODO: FETCH ALL TASKS
-       * 1. We need a list of tasks to display in the dropdown on the Rescue page.
-       * 2. Use `Task.findAll()`.
-       * 3. Pass this array to the view.
-       */
-      
-      // const dummyTasks = [
-      //   { id: 1, name: "OOP Paradigm" },
-      //   { id: 2, name: "PostgreSQL" },
-      //   { id: 3, name: "Express Servers" }
-      // ];
     } catch (err) {
       console.log(err);
       res.send(err.message);

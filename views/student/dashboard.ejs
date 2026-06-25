@@ -18,12 +18,12 @@
               </tr>
             </thead>
             <tbody>
-              <% if (studentData && studentData.Scores) { %>
-                <% studentData.Scores.forEach(scoreObj => { %>
+              <% if (studentData && studentData.Tasks && studentData.Tasks.length > 0) { %>
+                <% studentData.Tasks.forEach(taskObj => { %>
                   <tr>
-                    <td><%= scoreObj.Task.name %></td>
-                    <td><%= scoreObj.Task.weight || 'N/A' %></td>
-                    <td><%= scoreObj.score %></td>
+                    <td><%= taskObj.name %></td>
+                    <td><%= taskObj.weight || 'N/A' %></td>
+                    <td><%= taskObj.Score.score %></td>
                   </tr>
                 <% }) %>
               <% } else { %>
