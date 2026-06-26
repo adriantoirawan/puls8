@@ -20,7 +20,7 @@ Please follow these links in order:
 3. 🛣️ **[ROUTES.md](./ROUTES.md)**
    The definitive architectural routing guide. It elaborates on exactly what happens inside every GET and POST endpoint.
 4. 🧪 **[QA-SUITE.md](./QA-SUITE.md)**
-   Our professional, autonomous QA execution plan proving the robustness of our Post/Redirect/Get flow and authentication.
+   Our professional, QA execution plan proving the robustness of our Post/Redirect/Get flow and authentication.
 
 ---
 
