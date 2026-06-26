@@ -8,22 +8,10 @@
 
     <h2 class="text-center mb-4">Register</h2>
 
-    <!-- 
-    TODO: HANDLE ERROR ALERTS
-    Use EJS logic to check if an error string was sent:
-    <%% if (error) { %%>
-      <div class="alert alert-danger"><%%= error %%></div>
-    <%% } %%>
-    
-  -->
-    <% if (typeof error !== 'undefined' && error) { %>
-    <div class="alert alert-danger" role="alert">
-      <%= error %>
-    </div>
-  <% } %>
+    <%- include('./partials/errorAlert') %>
 
       <div class="card mb-4 shadow-sm">
-          <div class="card-header bg-primary text-white">Sample Form</div>
+          <div class="card-header bg-primary text-white">Register Account</div>
           <div class="card-body">
             <form action="/register" method="POST">
               <div class="mb-3">
@@ -39,15 +27,7 @@
           </div>
         </div>
     
-    <!-- TODO: BUILD THE REGISTER FORM
-    Ensure your input names match what `req.body` expects in the controller!
-    `<input name="email">` and `<input name="password">`
-    
-    TIP: Open `views/master.ejs` to copy-paste the exact HTML structure for Forms! -->
-  
-    <p class="text-muted text-center border p-3">Build your form here mapping to POST /register</p>
 
-    <%- include('./partials/debugData') %>
   </div>
 
   <%- include('./partials/footer') %>

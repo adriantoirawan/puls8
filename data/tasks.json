@@ -1,4 +1,242 @@
 [
-  { "name": "Phase 1 - OOP", "phase": 1, "weight": 30, "createdAt": "2026-06-24T00:00:00Z", "updatedAt": "2026-06-24T00:00:00Z" },
-  { "name": "Phase 1 - Async & DB", "phase": 1, "weight": 30, "createdAt": "2026-06-24T00:00:00Z", "updatedAt": "2026-06-24T00:00:00Z" }
+  {
+    "id": 1,
+    "name": "Git Flow",
+    "phase": 1,
+    "weight": 10,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "id": 2,
+    "name": "JS Basics",
+    "phase": 1,
+    "weight": 10,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "id": 3,
+    "name": "OOP",
+    "phase": 1,
+    "weight": 10,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "id": 4,
+    "name": "PostgreSQL",
+    "phase": 1,
+    "weight": 10,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "id": 5,
+    "name": "MVC",
+    "phase": 1,
+    "weight": 10,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "id": 6,
+    "name": "Sequelize",
+    "phase": 1,
+    "weight": 10,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "id": 7,
+    "name": "Express",
+    "phase": 1,
+    "weight": 10,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "id": 8,
+    "name": "Node.js",
+    "phase": 1,
+    "weight": 10,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "id": 9,
+    "name": "Authentication",
+    "phase": 1,
+    "weight": 10,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "id": 10,
+    "name": "Deploy",
+    "phase": 1,
+    "weight": 10,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "id": 11,
+    "name": "Advanced Express",
+    "phase": 2,
+    "weight": 10,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "id": 12,
+    "name": "React Basics",
+    "phase": 2,
+    "weight": 10,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "id": 13,
+    "name": "State Management",
+    "phase": 2,
+    "weight": 10,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "id": 14,
+    "name": "Hooks",
+    "phase": 2,
+    "weight": 10,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "id": 15,
+    "name": "Redux",
+    "phase": 2,
+    "weight": 10,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "id": 16,
+    "name": "Vue JS",
+    "phase": 2,
+    "weight": 10,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "id": 17,
+    "name": "API Design",
+    "phase": 2,
+    "weight": 10,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "id": 18,
+    "name": "Tailwind",
+    "phase": 2,
+    "weight": 10,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "id": 19,
+    "name": "Jest",
+    "phase": 2,
+    "weight": 10,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "id": 20,
+    "name": "CI/CD",
+    "phase": 2,
+    "weight": 10,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "id": 21,
+    "name": "React Native",
+    "phase": 3,
+    "weight": 10,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "id": 22,
+    "name": "Expo",
+    "phase": 3,
+    "weight": 10,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "id": 23,
+    "name": "GraphQL",
+    "phase": 3,
+    "weight": 10,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "id": 24,
+    "name": "Apollo",
+    "phase": 3,
+    "weight": 10,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "id": 25,
+    "name": "AWS",
+    "phase": 3,
+    "weight": 10,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "id": 26,
+    "name": "Microservices",
+    "phase": 3,
+    "weight": 10,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "id": 27,
+    "name": "Docker",
+    "phase": 3,
+    "weight": 10,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "id": 28,
+    "name": "Kubernetes",
+    "phase": 3,
+    "weight": 10,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "id": 29,
+    "name": "WebSockets",
+    "phase": 3,
+    "weight": 10,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "id": 30,
+    "name": "Final Project",
+    "phase": 3,
+    "weight": 10,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  }
 ]

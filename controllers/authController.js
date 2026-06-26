@@ -14,7 +14,8 @@ class AuthController {
    */
   static async getRegister(req, res) {
     try {
-      const dummyData = { error: null };
+      // [STR-1-PRG-Pattern] - Read error from query parameter after redirect
+      const dummyData = { error: req.query.error || null };
       res.render('register', dummyData);
     } catch (err) {
       console.log(err);
@@ -47,7 +48,8 @@ class AuthController {
     } catch (err) {
       if (err.name === 'SequelizeValidationError' || err.name === 'SequelizeUniqueConstraintError') {
         const errorMessage = err.errors[0].message;
-        return res.render('register', { error: errorMessage });
+        // [STR-1-PRG-Pattern] - Redirect instead of render on POST error
+        return res.redirect(`/register?error=${encodeURIComponent(errorMessage)}`);
       }
       res.send(err.message);
     }
@@ -67,7 +69,7 @@ class AuthController {
        * receive an error in the query string (e.g., `/login?error=Please+login+first`).
        * Extract `req.query.error` and pass it to the view below so the message renders on the screen!
        */
-      const dummyData = { error: null };
+      const dummyData = { error: error };
       res.render('login', dummyData);
     } catch (err) {
       console.log(err);
@@ -97,7 +99,7 @@ class AuthController {
        * 2. Find the user: `const user = await User.findOne({ where: { email } })`.
        * 3. If the user exists, compare passwords: `bcrypt.compareSync(password, user.password)`.
        * 4. If true, set `req.session.userId = user.id` and `req.session.role = user.role`.
-       *    // [REQ: Explore - 1. Membuat sistem login dengan middleware, session & bcryptjs]
+       *    // [REQ-EXP-1-Auth-Middleware] - Secure route access with session
        * 
        * KEYWORDS TO GOOGLE: "bcryptjs compareSync", "express-session store data"
        * 

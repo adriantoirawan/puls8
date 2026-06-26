@@ -3,6 +3,7 @@
 
     <div class="container mt-4">
       <h2 class="mb-4">Student Dashboard</h2>
+      <%- include('../partials/errorAlert') %>
 
       <div class="card mb-4 shadow-sm">
         <div class="card-header bg-primary text-white">
@@ -36,7 +37,10 @@
         </div>
       </div>
 
-      <a href="/student/rescue" class="btn btn-warning mt-3">Deploy Rescue Flare</a>
+      <div class="d-flex gap-2 mt-3">
+        <a href="/student/rescue" class="btn btn-warning">Deploy Rescue Flare</a>
+        <a href="/student/profile" class="btn btn-secondary">Edit My Profile</a>
+      </div>
 
     </div>
 
