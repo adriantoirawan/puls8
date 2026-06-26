@@ -1,0 +1,35 @@
+<%- include('../partials/header', { title: 'My Profile - Puls8' }) %>
+<%- include('../partials/navbar') %>
+
+<div class="container mt-4" style="max-width: 600px;">
+  <h2 class="mb-4">Edit Profile</h2>
+  <%- include('../partials/errorAlert') %>
+
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <form action="/student/profile" method="POST">
+        
+        <div class="mb-3">
+          <label class="form-label fw-bold">Discord Snowflake ID</label>
+          <input type="text" class="form-control" name="discordHandle" value="<%= student.Profile ? student.Profile.discordHandle : '' %>" placeholder="e.g. 1519818281094221955" required>
+          <div class="form-text">We need your 18-digit Discord User ID so the Rescue Flare can ping you properly!</div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label fw-bold">Learning Style (Instructor Evaluated)</label>
+          <input type="text" class="form-control" value="<%= student.Profile ? student.Profile.learningStyle : 'Unassessed' %>" disabled>
+          <div class="form-text">Your learning style is evaluated by your instructor.</div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label fw-bold">Grit Level (Instructor Evaluated)</label>
+          <input type="text" class="form-control" value="<%= student.Profile ? student.Profile.gritLevel : 'Unassessed' %> / 10" disabled>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Save Profile</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

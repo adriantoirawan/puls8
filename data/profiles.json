@@ -1,4 +1,722 @@
 [
-  { "id": 1, "userId": 1, "discordHandle": "MasterSensei", "learningStyle": "Visual", "gritLevel": 5, "createdAt": "2026-06-24T00:00:00Z", "updatedAt": "2026-06-24T00:00:00Z" },
-  { "id": 2, "userId": 2, "discordHandle": "StudentOne", "learningStyle": "Kinesthetic", "gritLevel": 3, "createdAt": "2026-06-24T00:00:00Z", "updatedAt": "2026-06-24T00:00:00Z" }
+  {
+    "userId": 6,
+    "discordHandle": "@byte_doge_192",
+    "learningStyle": "Visual",
+    "gritLevel": 3,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 7,
+    "discordHandle": "@byte_dev_899",
+    "learningStyle": "Visual",
+    "gritLevel": 3,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 8,
+    "discordHandle": "@gamer_guy_178",
+    "learningStyle": "Auditory",
+    "gritLevel": 9,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 9,
+    "discordHandle": "@guru_kid_238",
+    "learningStyle": "Unassessed",
+    "gritLevel": 3,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 10,
+    "discordHandle": "@byte_girl_178",
+    "learningStyle": "Kinesthetic",
+    "gritLevel": 3,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 11,
+    "discordHandle": "@guru_master_1",
+    "learningStyle": "Unassessed",
+    "gritLevel": 10,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 12,
+    "discordHandle": "@hacker_bot_276",
+    "learningStyle": "Kinesthetic",
+    "gritLevel": 7,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 13,
+    "discordHandle": "@wizard_bot_376",
+    "learningStyle": "Visual",
+    "gritLevel": 3,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 14,
+    "discordHandle": "@guru_dev_865",
+    "learningStyle": "Reading",
+    "gritLevel": 2,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 15,
+    "discordHandle": "@hacker_bot_413",
+    "learningStyle": "Kinesthetic",
+    "gritLevel": 2,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 16,
+    "discordHandle": "@byte_girl_774",
+    "learningStyle": "Reading",
+    "gritLevel": 3,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 17,
+    "discordHandle": "@coder_master_186",
+    "learningStyle": "Auditory",
+    "gritLevel": 8,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 18,
+    "discordHandle": "@wizard_master_500",
+    "learningStyle": "Auditory",
+    "gritLevel": 4,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 19,
+    "discordHandle": "@guru_bot_977",
+    "learningStyle": "Unassessed",
+    "gritLevel": 10,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 20,
+    "discordHandle": "@ninja_bot_533",
+    "learningStyle": "Visual",
+    "gritLevel": 8,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 21,
+    "discordHandle": "@gamer_doge_858",
+    "learningStyle": "Kinesthetic",
+    "gritLevel": 7,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 22,
+    "discordHandle": "@hacker_kid_92",
+    "learningStyle": "Reading",
+    "gritLevel": 1,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 23,
+    "discordHandle": "@guru_master_863",
+    "learningStyle": "Auditory",
+    "gritLevel": 7,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 24,
+    "discordHandle": "@wizard_doge_839",
+    "learningStyle": "Reading",
+    "gritLevel": 6,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 25,
+    "discordHandle": "@coder_pro_924",
+    "learningStyle": "Unassessed",
+    "gritLevel": 9,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 26,
+    "discordHandle": "@coder_doge_966",
+    "learningStyle": "Unassessed",
+    "gritLevel": 9,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 27,
+    "discordHandle": "@wizard_bot_695",
+    "learningStyle": "Kinesthetic",
+    "gritLevel": 4,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 28,
+    "discordHandle": "@hacker_girl_128",
+    "learningStyle": "Reading",
+    "gritLevel": 9,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 29,
+    "discordHandle": "@gamer_master_897",
+    "learningStyle": "Auditory",
+    "gritLevel": 8,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 30,
+    "discordHandle": "@pixel_dev_697",
+    "learningStyle": "Visual",
+    "gritLevel": 8,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 31,
+    "discordHandle": "@guru_pro_905",
+    "learningStyle": "Visual",
+    "gritLevel": 10,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 32,
+    "discordHandle": "@ninja_bot_747",
+    "learningStyle": "Kinesthetic",
+    "gritLevel": 6,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 33,
+    "discordHandle": "@gamer_doge_613",
+    "learningStyle": "Auditory",
+    "gritLevel": 8,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 34,
+    "discordHandle": "@wizard_girl_191",
+    "learningStyle": "Auditory",
+    "gritLevel": 7,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 35,
+    "discordHandle": "@gamer_pro_15",
+    "learningStyle": "Auditory",
+    "gritLevel": 3,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 36,
+    "discordHandle": "@gamer_dev_349",
+    "learningStyle": "Visual",
+    "gritLevel": 6,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 37,
+    "discordHandle": "@hacker_doge_996",
+    "learningStyle": "Reading",
+    "gritLevel": 2,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 38,
+    "discordHandle": "@wizard_bot_415",
+    "learningStyle": "Unassessed",
+    "gritLevel": 8,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 39,
+    "discordHandle": "@wizard_master_112",
+    "learningStyle": "Kinesthetic",
+    "gritLevel": 2,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 40,
+    "discordHandle": "@pixel_pro_653",
+    "learningStyle": "Unassessed",
+    "gritLevel": 5,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 41,
+    "discordHandle": "@hacker_doge_510",
+    "learningStyle": "Visual",
+    "gritLevel": 7,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 42,
+    "discordHandle": "@wizard_dev_667",
+    "learningStyle": "Kinesthetic",
+    "gritLevel": 1,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 43,
+    "discordHandle": "@guru_dev_729",
+    "learningStyle": "Reading",
+    "gritLevel": 6,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 44,
+    "discordHandle": "@coder_bot_122",
+    "learningStyle": "Kinesthetic",
+    "gritLevel": 5,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 45,
+    "discordHandle": "@coder_kid_411",
+    "learningStyle": "Visual",
+    "gritLevel": 6,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 46,
+    "discordHandle": "@pixel_pro_768",
+    "learningStyle": "Reading",
+    "gritLevel": 7,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 47,
+    "discordHandle": "@hacker_doge_17",
+    "learningStyle": "Kinesthetic",
+    "gritLevel": 5,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 48,
+    "discordHandle": "@wizard_doge_70",
+    "learningStyle": "Reading",
+    "gritLevel": 8,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 49,
+    "discordHandle": "@coder_doge_449",
+    "learningStyle": "Reading",
+    "gritLevel": 7,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 50,
+    "discordHandle": "@coder_bot_626",
+    "learningStyle": "Visual",
+    "gritLevel": 7,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 51,
+    "discordHandle": "@guru_pro_913",
+    "learningStyle": "Kinesthetic",
+    "gritLevel": 10,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 52,
+    "discordHandle": "@byte_guy_130",
+    "learningStyle": "Visual",
+    "gritLevel": 8,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 53,
+    "discordHandle": "@pixel_pro_292",
+    "learningStyle": "Auditory",
+    "gritLevel": 4,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 54,
+    "discordHandle": "@byte_master_348",
+    "learningStyle": "Kinesthetic",
+    "gritLevel": 9,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 55,
+    "discordHandle": "@hacker_girl_509",
+    "learningStyle": "Unassessed",
+    "gritLevel": 8,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 56,
+    "discordHandle": "@coder_master_249",
+    "learningStyle": "Kinesthetic",
+    "gritLevel": 8,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 57,
+    "discordHandle": "@gamer_guy_431",
+    "learningStyle": "Auditory",
+    "gritLevel": 2,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 58,
+    "discordHandle": "@guru_pro_336",
+    "learningStyle": "Visual",
+    "gritLevel": 4,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 59,
+    "discordHandle": "@ninja_doge_795",
+    "learningStyle": "Kinesthetic",
+    "gritLevel": 2,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 60,
+    "discordHandle": "@ninja_dev_985",
+    "learningStyle": "Reading",
+    "gritLevel": 10,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 61,
+    "discordHandle": "@hacker_kid_393",
+    "learningStyle": "Auditory",
+    "gritLevel": 9,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 62,
+    "discordHandle": "@wizard_guy_221",
+    "learningStyle": "Auditory",
+    "gritLevel": 9,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 63,
+    "discordHandle": "@wizard_master_333",
+    "learningStyle": "Visual",
+    "gritLevel": 2,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 64,
+    "discordHandle": "@ninja_guy_367",
+    "learningStyle": "Auditory",
+    "gritLevel": 10,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 65,
+    "discordHandle": "@hacker_pro_897",
+    "learningStyle": "Visual",
+    "gritLevel": 6,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 66,
+    "discordHandle": "@gamer_kid_519",
+    "learningStyle": "Visual",
+    "gritLevel": 9,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 67,
+    "discordHandle": "@gamer_doge_250",
+    "learningStyle": "Kinesthetic",
+    "gritLevel": 5,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 68,
+    "discordHandle": "@guru_pro_978",
+    "learningStyle": "Visual",
+    "gritLevel": 3,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 69,
+    "discordHandle": "@gamer_bot_918",
+    "learningStyle": "Reading",
+    "gritLevel": 9,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 70,
+    "discordHandle": "@pixel_doge_221",
+    "learningStyle": "Auditory",
+    "gritLevel": 2,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 71,
+    "discordHandle": "@ninja_doge_936",
+    "learningStyle": "Unassessed",
+    "gritLevel": 9,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 72,
+    "discordHandle": "@pixel_doge_8",
+    "learningStyle": "Kinesthetic",
+    "gritLevel": 3,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 73,
+    "discordHandle": "@ninja_girl_863",
+    "learningStyle": "Kinesthetic",
+    "gritLevel": 3,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 74,
+    "discordHandle": "@wizard_bot_320",
+    "learningStyle": "Visual",
+    "gritLevel": 2,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 75,
+    "discordHandle": "@guru_guy_496",
+    "learningStyle": "Reading",
+    "gritLevel": 7,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 76,
+    "discordHandle": "@coder_dev_177",
+    "learningStyle": "Reading",
+    "gritLevel": 6,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 77,
+    "discordHandle": "@byte_master_363",
+    "learningStyle": "Auditory",
+    "gritLevel": 9,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 78,
+    "discordHandle": "@wizard_guy_635",
+    "learningStyle": "Visual",
+    "gritLevel": 3,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 79,
+    "discordHandle": "@wizard_girl_18",
+    "learningStyle": "Visual",
+    "gritLevel": 10,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 80,
+    "discordHandle": "@ninja_bot_704",
+    "learningStyle": "Auditory",
+    "gritLevel": 3,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 81,
+    "discordHandle": "@pixel_bot_490",
+    "learningStyle": "Unassessed",
+    "gritLevel": 5,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 82,
+    "discordHandle": "@gamer_dev_661",
+    "learningStyle": "Kinesthetic",
+    "gritLevel": 6,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 83,
+    "discordHandle": "@gamer_bot_737",
+    "learningStyle": "Visual",
+    "gritLevel": 1,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 84,
+    "discordHandle": "@wizard_master_313",
+    "learningStyle": "Kinesthetic",
+    "gritLevel": 1,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 85,
+    "discordHandle": "@pixel_dev_488",
+    "learningStyle": "Reading",
+    "gritLevel": 2,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 86,
+    "discordHandle": "@pixel_pro_352",
+    "learningStyle": "Unassessed",
+    "gritLevel": 5,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 87,
+    "discordHandle": "@gamer_pro_218",
+    "learningStyle": "Auditory",
+    "gritLevel": 4,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 88,
+    "discordHandle": "@hacker_pro_593",
+    "learningStyle": "Auditory",
+    "gritLevel": 10,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 89,
+    "discordHandle": "@ninja_master_318",
+    "learningStyle": "Unassessed",
+    "gritLevel": 2,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 90,
+    "discordHandle": "@pixel_dev_342",
+    "learningStyle": "Visual",
+    "gritLevel": 5,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 91,
+    "discordHandle": "@coder_girl_300",
+    "learningStyle": "Reading",
+    "gritLevel": 3,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 92,
+    "discordHandle": "@hacker_bot_557",
+    "learningStyle": "Auditory",
+    "gritLevel": 3,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 93,
+    "discordHandle": "@pixel_kid_82",
+    "learningStyle": "Auditory",
+    "gritLevel": 7,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 94,
+    "discordHandle": "@gamer_dev_649",
+    "learningStyle": "Unassessed",
+    "gritLevel": 9,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "userId": 95,
+    "discordHandle": "@pixel_doge_288",
+    "learningStyle": "Reading",
+    "gritLevel": 5,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  }
 ]

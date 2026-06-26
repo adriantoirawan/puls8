@@ -12,26 +12,19 @@ class StudentController {
    */
   static async getDashboard(req, res) {
     try {
-      /* 
-       * TODO: FETCH CURRENT STUDENT DATA
-       * 1. You need to find the User where id === req.session.userId.
-       * 2. Eager load their associated Tasks (through Scores).
-       * 
-       * KEYWORDS TO GOOGLE: "Sequelize findAll include", "Sequelize M:N association queries"
-       * DOCS: https://sequelize.org/docs/v6/advanced-association-concepts/eager-loading/
-       * 
-       * PITFALL: Don't fetch all users! Only fetch the logged-in student.
-       */
-      
-      const dummyStudentData = {
-        email: "student@puls8.com",
-        Scores: [
-          { score: 95, Task: { name: "OOP Paradigm" } },
-          { score: 80, Task: { name: "PostgreSQL" } }
-        ]
-      };
+      const studentData = await User.findByPk(req.session.userId, {
+        include: [
+          {
+            model: Task,
+            through: {model: Score, attributes: ['score']}
+          },
+        ],
+      });
 
-      res.render('student/dashboard', { studentData: dummyStudentData });
+      res.render('student/dashboard', { 
+        studentData, 
+        error: req.query.error || null 
+      });
     } catch (err) {
       console.log(err);
       res.send(err.message);
@@ -45,20 +38,25 @@ class StudentController {
    */
   static async getRescue(req, res) {
     try {
-      /* 
-       * TODO: FETCH ALL TASKS
-       * 1. We need a list of tasks to display in the dropdown on the Rescue page.
-       * 2. Use `Task.findAll()`.
-       * 3. Pass this array to the view.
-       */
+      // Find tasks the student already passed
+      const studentWithTasks = await User.findByPk(req.session.userId, {
+        include: [{ model: Task, through: { model: Score } }]
+      });
       
-      const dummyTasks = [
-        { id: 1, name: "OOP Paradigm" },
-        { id: 2, name: "PostgreSQL" },
-        { id: 3, name: "Express Servers" }
-      ];
+      const passedTaskIds = studentWithTasks && studentWithTasks.Tasks 
+        ? studentWithTasks.Tasks.filter(t => t.Score.score >= 80).map(t => t.id)
+        : [];
 
-      res.render('student/rescue', { tasks: dummyTasks });
+      const { Op } = require('sequelize');
+      const task = await Task.findAll({
+        where: passedTaskIds.length > 0 ? { id: { [Op.notIn]: passedTaskIds } } : {}
+      });
+
+      res.render('student/rescue', {
+        task,
+        role: req.session.role,
+        error: req.query.error || null
+      });
     } catch (err) {
       console.log(err);
       res.send(err.message);
@@ -67,28 +65,96 @@ class StudentController {
 
   /**
    * Handle the Discord ping deployment.
+   * // [REQ-EXP-2-FINAL-Feature] - Discord.js webhook integration
    * @param {Object} req - Express request object
    * @param {Object} res - Express response object
    */
   static async postRescue(req, res) {
     try {
-      /* 
-       * TODO: HANDLE DISCORD PING FOR PEER RESCUE
-       * 1. Extract `taskId` from req.body.
-       * 2. Find the current student to get their `classId`.
-       * 3. Query the database to find a "Smart Peer":
-       *    - Another student in the EXACT SAME `classId`.
-       *    - Who has a Score of `>= 80` on this specific `taskId`.
-       *    - (Hint: use `include` with `Score` and `[Op.gte]: 80`).
-       * 4. If a peer is found, extract their `discordHandle` from their `Profile`.
-       * 5. Use the `discord.js` library to send a message to a channel tagging them.
-       *    // [REQ: Explore - 2. Membuat fitur MVP]
-       * 6. Redirect back to /student.
-       * 
-       * KEYWORDS TO GOOGLE: "discord.js send message to channel", "Sequelize Op.gte"
-       * DOCS: https://discordjs.guide/
-       */
-       
+      const { taskId } = req.body;
+      const currentStudent = await User.findByPk(req.session.userId, {
+        include: Profile
+      });
+
+      if (!currentStudent) {
+        return res.redirect('/login?error=Session+expired.+Please+login+again.');
+      }
+
+      const { Op } = require('sequelize');
+      const smartPeer = await User.findOne({
+        where: { 
+          classId: currentStudent.classId,
+          id: { [Op.ne]: currentStudent.id } // Prevent self-rescue!
+        },
+        include: [
+          { model: Profile },
+          { 
+            model: Task, 
+            where: { id: taskId }, 
+            through: { where: { score: { [Op.gte]: 80 } } } 
+          }
+        ]
+      });
+
+      if (smartPeer && smartPeer.Profile) {
+        const { WebhookClient } = require('discord.js');
+        try {
+            const webhookClient = new WebhookClient({ url: 'https://discord.com/api/webhooks/1519818281094221955/0hvX8HHNAFX764sLo_g4R1ZQiYir4yJ8Zhd5CyG3NIOwT-LQgbUVogD2Q1OjY5rgmPBq' });
+            
+            const taskName = smartPeer.Tasks[0].name;
+            const strugglingStudent = currentStudent.Profile ? `@${currentStudent.Profile.discordHandle}` : currentStudent.email;
+
+            await webhookClient.send({
+                content: `🚨 **RESCUE FLARE DEPLOYED** 🚨\n${strugglingStudent} is completely stuck on **"${taskName}"** and needs your help, <@${smartPeer.Profile.discordHandle}>! You scored an 80+ on this, so you are their best hope!`,
+            });
+        } catch(discordErr) {
+            console.log(discordErr);
+        }
+        res.redirect('/student');
+      } else {
+        res.redirect('/student?error=No+peers+in+your+class+have+mastered+this+task+yet.+Hang+tight!');
+      }
+    } catch (err) {
+      console.log(err);
+      res.send(err.message);
+    }
+  }
+
+  /**
+   * Render the student profile page.
+   */
+  static async getProfile(req, res) {
+    try {
+      const student = await User.findByPk(req.session.userId, { include: Profile });
+      if (!student) return res.redirect('/login');
+      
+      res.render('student/profile', { 
+        student,
+        role: req.session.role,
+        error: req.query.error || null 
+      });
+    } catch (err) {
+      console.log(err);
+      res.send(err.message);
+    }
+  }
+
+  /**
+   * Handle student profile update.
+   */
+  static async postProfile(req, res) {
+    try {
+      const { discordHandle } = req.body;
+      const student = await User.findByPk(req.session.userId, { include: Profile });
+      
+      if (!student) return res.redirect('/login');
+
+      if (student.Profile) {
+        await student.Profile.update({ discordHandle });
+      } else {
+        await Profile.create({ userId: student.id, discordHandle, learningStyle: 'Unassessed', gritLevel: 5 });
+      }
+
       res.redirect('/student');
     } catch (err) {
       console.log(err);

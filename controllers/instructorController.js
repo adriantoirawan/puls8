@@ -1,11 +1,12 @@
-const { Class, User, Profile, Sequelize } = require('../models');
+const { Class, User, Task, Score, Profile, Sequelize } = require("../models");
+const calculateKKM = require('../helpers/calculateKKM');
+const { where } = require("sequelize");
 const { Op } = Sequelize;
 
 /**
  * InstructorController
  */
 class InstructorController {
-
   /**
    * Render the instructor dashboard.
    * @param {Object} req - Express request object
@@ -13,53 +14,44 @@ class InstructorController {
    */
   static async getDashboard(req, res) {
     try {
-      /* 
-       * TODO: IMPLEMENT EAGER LOADING & SEARCH & STATIC METHOD
-       * 
-       * 1. **STATIC METHOD REQUIREMENT**: Fetch active classes using your predefined static method!
-       *    `const activeClasses = await Class.getActiveClasses();`
-       * 
-       * 2. **SEARCH REQUIREMENT**: Check if `req.query.search` exists. 
-       *    If it does, construct a `where` clause using Sequelize Operators (`Op.iLike`) to search student emails.
-       *    // [REQ: Aplikasi - 1. Fitur search atau sort menggunakan OP]
-       * 
-       * 3. **EAGER LOADING REQUIREMENT**: Use `Class.findAll()` and `include` to fetch:
-       *    Class -> Users -> Profiles.
-       *    // [REQ: Pages - 3. Menampilkan data gabungan dari 2 table atau lebih (eager loading)]
-       * 
-       * 4. **HELPER REQUIREMENT**: Import `helpers/calculateKKM.js` and use it to process `classData` to calculate the trajectory!
-       * 
-       * KEYWORDS TO GOOGLE: "Sequelize Op.iLike", "Sequelize Eager Loading nested include"
-       * DOCS: https://sequelize.org/docs/v6/core-concepts/model-querying-basics/#operators
-       * 
-       * PITFALL: By default, `include` with a `where` clause creates an INNER JOIN. 
-       * This means if a class has no matching students, the class won't show up at all! 
-       * Add `required: false` to the User include to force a LEFT OUTER JOIN.
-       */
-      
-      const dummyClassData = [
-        {
-          id: 1,
-          name: "PHASE-1-INSTRUCTOR-DUMMY",
-          phaseLevel: 1,
-          Users: [
-            {
-              id: 101,
-              email: "student@puls8.com",
-              phaseLevel: 1,
-              Profile: { discordHandle: "Student#1234", learningStyle: "Visual", gritLevel: 4 },
-              Scores: [
-                { score: 85, Task: { weight: 50, name: "OOP Paradigm" } },
-                { score: 90, Task: { weight: 50, name: "PostgreSQL" } }
-              ],
-              // Mocking the instance method for the dummy object
-              generateDossier: function() { return `Student ${this.email} is in Phase ${this.phaseLevel}. AI formatting logic goes here.`; }
-            }
-          ]
-        }
-      ];
+      const search = req.query.search;
+      // [REQ-APP-1-Search-Sort-OP] - Filter students by email
+      const userWhere = search ? { email: { [Op.iLike]: `%${search}%` } } : {};
+      // [REQ-PAGE-3-Eager-Loading] - Join Class, Users, Profile, and Tasks
+      const classData = await Class.getActiveClasses({
+        include: [
+          {
+            model: User,
+            where: userWhere,
+            required: false, // LEFT OUTER JOIN
+            include: [
+              { model: Profile }, // Include Profile!
+              { model: Task, through: { model: Score, attributes: ["score"] } },
+            ],
+          },
+        ],
+      });
 
-      res.render('instructor/dashboard', { classData: dummyClassData });
+      // Fetch unassigned students (Waiting Pool)
+      const unassignedStudents = await User.findAll({
+        where: {
+          role: 'student',
+          classId: null,
+          ...userWhere
+        },
+        include: [Profile]
+      });
+
+      const kkmData = calculateKKM(classData);
+
+      res.render('instructor/dashboard', {
+        search: search || '',
+        role: req.session.role,
+        classData: classData,
+        unassignedStudents: unassignedStudents,
+        kkmData: kkmData,
+        error: req.query.error || null
+      });
     } catch (err) {
       console.log(err);
       res.send(err.message);
@@ -73,29 +65,214 @@ class InstructorController {
    */
   static async postResolveStudent(req, res) {
     try {
-      /*
-       * TODO: PHASE RESOLUTION PROTOCOL
-       * 1. Extract the `id` of the student from `req.params`.
-       * 2. Extract the action (e.g., `moveUp` or `repeat`) from `req.body`.
-       * 3. Find the student using `User.findByPk()`.
-       * 4. If `moveUp`:
-       *    - Increment `phaseLevel` by 1.
-       *    - Set `classId` to `null` (returns them to waiting pool).
-       *    - Set `isRepeater` to `false`.
-       * 5. If `repeat`:
-       *    - Keep `phaseLevel` the same.
-       *    - Set `classId` to `null`.
-       *    - Set `isRepeater` to `true`.
-       *    - Find all `Scores` belonging to this user and `destroy()` them so they start fresh.
-       * 6. Save the student and redirect back to `/instructor`.
-       * 
-       * // [REQ: Aplikasi - 8. Menggunakan mekanisme promise chaining]
-       */
-       
-      res.redirect('/instructor');
+      const { id } = req.params;
+      const { action } = req.body;
+
+      const student = await User.findByPk(id);
+
+      if (action === "moveUp") {
+        student.phaseLevel += 1;
+        student.classId = null; // Return to waiting pool
+        student.isRepeater = false;
+        
+        await student.save();
+
+      } else if (action === "repeat") {
+        student.classId = null; // Return to waiting pool
+        student.isRepeater = true;
+        
+        await student.save();
+        // HACKTIV8 DOESN'T DELETE SCORE IF A STUDENT REPEATS,
+        // but for the sake of satisfying promise chaining requirements, here we go
+        // [REQ-APP-8-Promise-Chaining] - Sequential awaits for data consistency
+        // [REQ-APP-5-CRUD-Methods] - Using destroy() and save()
+        await Score.destroy({ where: { userId: id } });
+      }
+
+      res.redirect("/instructor");
     } catch (err) {
       console.log(err);
       res.send(err.message);
+    }
+  }
+
+  /**
+   * Handle assigning a student to a class.
+   * @param {Object} req - Express request object
+   * @param {Object} res - Express response object
+   */
+  static async postAssignStudent(req, res) {
+    try {
+      const { id } = req.params;
+      const { classId } = req.body;
+
+      const student = await User.findByPk(id);
+      if (student) {
+        student.classId = classId;
+        await student.save();
+      }
+
+      res.redirect("/instructor");
+    } catch (err) {
+      console.log(err);
+      res.send(err.message);
+    }
+  }
+
+  /**
+   * Render the grade student page.
+   */
+  static async getGrade(req, res) {
+    try {
+      const { id } = req.params;
+      const student = await User.findByPk(id, { include: [Profile] });
+      // [STR-2-Phase-Locking] - Scope the returned tasks strictly to the student's current phase
+      const tasks = await Task.findAll({ where: { phase: student.phaseLevel } });
+      
+      res.render('instructor/grade', {
+        student,
+        tasks,
+        role: req.session.role,
+        error: req.query.error || null
+      });
+    } catch (err) {
+      console.log(err);
+      res.send(err.message);
+    }
+  }
+
+  /**
+   * Handle assigning a score.
+   */
+  static async postGrade(req, res) {
+    try {
+      const { id } = req.params;
+      const { taskId, score } = req.body;
+
+      // Upsert score
+      const [record, created] = await Score.findOrCreate({
+        where: { userId: id, taskId: taskId },
+        defaults: { score: score }
+      });
+      
+      if (!created) {
+        record.score = score;
+        await record.save();
+      }
+
+      res.redirect("/instructor");
+    } catch (err) {
+      console.log(err);
+      res.redirect(`/instructor/grade/${req.params.id}?error=${err.message}`);
+    }
+  }
+
+  /**
+   * Render the evaluate student page.
+   */
+  static async getEvaluate(req, res) {
+    try {
+      const { id } = req.params;
+      const student = await User.findByPk(id, { include: [Profile] });
+      
+      res.render('instructor/evaluate', {
+        student,
+        role: req.session.role,
+        error: req.query.error || null
+      });
+    } catch (err) {
+      console.log(err);
+      res.send(err.message);
+    }
+  }
+
+  /**
+   * Handle assigning learning style and grit level.
+   */
+  static async postEvaluate(req, res) {
+    try {
+      const { id } = req.params;
+      const { learningStyle, gritLevel } = req.body;
+
+      const student = await User.findByPk(id, { include: [Profile] });
+      if (!student) return res.redirect('/instructor');
+
+      if (student.Profile) {
+        await student.Profile.update({ learningStyle, gritLevel });
+      } else {
+        await Profile.create({ userId: student.id, learningStyle, gritLevel });
+      }
+
+      res.redirect("/instructor");
+    } catch (err) {
+      console.log(err);
+      res.redirect(`/instructor/evaluate/${req.params.id}?error=${err.message}`);
+    }
+  }
+
+  /**
+   * Render the Add Class page.
+   */
+  static async getAddClass(req, res) {
+    try {
+      res.render('instructor/addClass', {
+        role: req.session.role,
+        error: req.query.error || null
+      });
+    } catch (err) {
+      console.log(err);
+      res.send(err.message);
+    }
+  }
+
+  /**
+   * Handle creating a new Class.
+   */
+  static async postAddClass(req, res) {
+    try {
+      const { name, phaseLevel } = req.body;
+      await Class.create({ name, phaseLevel });
+      res.redirect("/instructor");
+    } catch (err) {
+      console.log(err);
+      if (err.name === 'SequelizeValidationError') {
+         res.redirect(`/instructor/classes/add?error=${err.errors[0].message}`);
+      } else {
+         res.redirect(`/instructor/classes/add?error=${err.message}`);
+      }
+    }
+  }
+
+  /**
+   * Render the Add Task page.
+   */
+  static async getAddTask(req, res) {
+    try {
+      res.render('instructor/addTask', {
+        role: req.session.role,
+        error: req.query.error || null
+      });
+    } catch (err) {
+      console.log(err);
+      res.send(err.message);
+    }
+  }
+
+  /**
+   * Handle creating a new Task.
+   */
+  static async postAddTask(req, res) {
+    try {
+      const { name, phase, weight } = req.body;
+      await Task.create({ name, phase, weight });
+      res.redirect("/instructor");
+    } catch (err) {
+      console.log(err);
+      if (err.name === 'SequelizeValidationError') {
+         res.redirect(`/instructor/tasks/add?error=${err.errors[0].message}`);
+      } else {
+         res.redirect(`/instructor/tasks/add?error=${err.message}`);
+      }
     }
   }
 }

@@ -1,0 +1,36 @@
+<%- include('../partials/header', { title: 'Grade Student - Puls8' }) %>
+<%- include('../partials/navbar') %>
+
+<div class="container mt-4" style="max-width: 600px;">
+  <h2 class="mb-4">Grade Student: <%= student.email %></h2>
+  <%- include('../partials/errorAlert') %>
+
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <form action="/instructor/grade/<%= student.id %>" method="POST">
+        
+        <div class="mb-3">
+          <label class="form-label fw-bold">Select Task</label>
+          <select class="form-select" name="taskId" required>
+            <option value="" disabled selected>-- Select a Task --</option>
+            <% tasks.forEach(task => { %>
+              <option value="<%= task.id %>"><%= task.name %> (Phase <%= task.phase %>)</option>
+            <% }) %>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label fw-bold">Score (0-100)</label>
+          <input type="number" class="form-control" name="score" min="0" max="100" required>
+        </div>
+
+        <div class="d-flex gap-2">
+           <button type="submit" class="btn btn-primary w-100">Submit Score</button>
+           <a href="/instructor" class="btn btn-secondary w-100">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

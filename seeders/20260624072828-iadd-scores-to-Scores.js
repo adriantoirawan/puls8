@@ -6,7 +6,11 @@ module.exports = {
   async up (queryInterface, Sequelize) {
     const dataStr = await fsProm.readFile('./data/scores.json', 'utf-8');
     const data = JSON.parse(dataStr);
-    await queryInterface.bulkInsert('Scores', data, {});
+    const cleanData = data.map(el => {
+      delete el.id
+      return el
+    })
+    await queryInterface.bulkInsert('Scores', cleanData, {});
   },
 
   async down (queryInterface, Sequelize) {

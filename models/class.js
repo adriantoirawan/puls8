@@ -5,12 +5,13 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Class.hasMany(models.User, { foreignKey: 'classId' });
     }
-    // [REQ: Aplikasi - 2. Static method di model]
-    // Static method requirement
-    static async getActiveClasses() {
+    // [REQ-APP-2-Static-Method] - Fetch classes by active phases
+    static async getActiveClasses(options = {}) {
       return await this.findAll({
+        ...options,
         where: {
-          phaseLevel: { [Op.gte]: 0 }
+          phaseLevel: { [Op.gte]: 0 },
+          ...options.where
         }
       });
     }

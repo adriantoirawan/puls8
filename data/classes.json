@@ -1,4 +1,65 @@
 [
-  { "id": 1, "name": "PHASE-1-JUNE", "phaseLevel": 1, "createdAt": "2026-06-24T00:00:00Z", "updatedAt": "2026-06-24T00:00:00Z" },
-  { "id": 2, "name": "PHASE-2-JULY", "phaseLevel": 2, "createdAt": "2026-06-24T00:00:00Z", "updatedAt": "2026-06-24T00:00:00Z" }
+  {
+    "id": 1,
+    "name": "Fox",
+    "phaseLevel": 1,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "id": 2,
+    "name": "Wolf",
+    "phaseLevel": 1,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "id": 3,
+    "name": "Bear",
+    "phaseLevel": 1,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "id": 4,
+    "name": "Eagle",
+    "phaseLevel": 2,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "id": 5,
+    "name": "Hawk",
+    "phaseLevel": 2,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "id": 6,
+    "name": "Falcon",
+    "phaseLevel": 2,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "id": 7,
+    "name": "Tiger",
+    "phaseLevel": 3,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "id": 8,
+    "name": "Lion",
+    "phaseLevel": 3,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  },
+  {
+    "id": 9,
+    "name": "Panther",
+    "phaseLevel": 3,
+    "createdAt": "2026-06-25T00:00:00Z",
+    "updatedAt": "2026-06-25T00:00:00Z"
+  }
 ]

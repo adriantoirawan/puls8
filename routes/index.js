@@ -9,10 +9,9 @@ router.use('/', authRouter);
 
 // Global Authentication Middleware
 router.use((req, res, next) => {
-  // Uncomment this if session is ready
-  // if (!req.session.userId) {
-  //   return res.redirect('/login');
-  // }
+  if (!req.session.userId) {
+    return res.redirect('/login?error=Please+login+first');
+  }
   next();
 });
 
