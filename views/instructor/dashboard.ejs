@@ -2,16 +2,39 @@
    <%- include('../partials/navbar') %>
 
       <div class="container mt-4">
-         <h2 class="mb-4">Instructor Dashboard</h2>
+         <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="mb-0">Instructor Dashboard</h2>
+            <div>
+               <a href="/instructor/classes/add" class="btn btn-outline-primary me-2">+ New Class</a>
+               <a href="/instructor/tasks/add" class="btn btn-outline-primary">+ New Task</a>
+            </div>
+         </div>
+         <%- include('../partials/errorAlert') %>
 
          <form action="/instructor" method="GET" class="mb-4">
             <div class="input-group">
-               <input type="text" class="form-control" name="search" placeholder="Search student emails...">
+               <input type="text" class="form-control" name="search" placeholder="Search student emails..." value="<%= search %>">
                <button type="submit" class="btn btn-primary">Search</button>
             </div>
          </form>
 
+         <% 
+            // [STR-4-Empty-State-UI] - Conditionally render an info alert when no data matches a search term
+            let hasResults = false;
+            classData.forEach(cls => { 
+               if (cls.Users && cls.Users.length > 0) hasResults = true;
+            });
+            if (unassignedStudents && unassignedStudents.length > 0) hasResults = true;
+         %>
+
+         <% if (search && !hasResults) { %>
+            <div class="alert alert-info text-center">
+               No students found matching your search term "<strong><%= search %></strong>".
+            </div>
+         <% } %>
+
          <% classData.forEach(cls => { %>
+            <% if (cls.Users && cls.Users.length > 0) { %>
             <div class="card mb-4 shadow-sm">
                <div class="card-header bg-secondary text-white">
                   <h4 class="mb-0">Class: <%= cls.name %> (Phase <%= cls.phaseLevel %>)</h4>
@@ -23,6 +46,7 @@
                            <th>Student Email</th>
                            <th>Phase</th>
                            <th>Dossier</th>
+                           <th>Actions</th>
                         </tr>
                      </thead>
                      <tbody>
@@ -31,13 +55,70 @@
                               <td><%= user.email %></td>
                               <td><%= user.phaseLevel %></td>
                               <td><%= user.generateDossier() %></td>
+                              <td>
+                                 <a href="/instructor/grade/<%= user.id %>" class="btn btn-warning btn-sm mb-1">Grade</a>
+                                 <a href="/instructor/evaluate/<%= user.id %>" class="btn btn-info btn-sm mb-1 text-white">Evaluate</a>
+                                 <form action="/instructor/resolve/<%= user.id %>" method="POST" class="d-inline">
+                                    <input type="hidden" name="action" value="moveUp">
+                                    <button type="submit" class="btn btn-success btn-sm mb-1">Move Up</button>
+                                 </form>
+                                 <form action="/instructor/resolve/<%= user.id %>" method="POST" class="d-inline">
+                                    <input type="hidden" name="action" value="repeat">
+                                    <button type="submit" class="btn btn-danger btn-sm mb-1">Repeat</button>
+                                 </form>
+                              </td>
                            </tr>
                         <% }) %>
                      </tbody>
                   </table>
                </div>
             </div>
+            <% } %>
          <% }) %>
+
+         <div class="card mb-4 shadow-sm border-warning">
+            <div class="card-header bg-warning text-dark">
+               <h4 class="mb-0">Waiting Pool (Unassigned Students)</h4>
+            </div>
+            <div class="card-body">
+               <table class="table table-striped table-hover">
+                  <thead>
+                     <tr>
+                        <th>Student Email</th>
+                        <th>Current Phase</th>
+                        <th>Assign to Class</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <% if (unassignedStudents && unassignedStudents.length > 0) { %>
+                        <% unassignedStudents.forEach(user => { %>
+                           <tr>
+                              <td><%= user.email %></td>
+                              <td><%= user.phaseLevel %></td>
+                              <td>
+                                 <form action="/instructor/assign/<%= user.id %>" method="POST" class="d-inline-flex gap-2">
+                                    <select name="classId" class="form-select form-select-sm" required>
+                                       <option value="" disabled selected>-- Select Class --</option>
+                                       <% classData.forEach(cls => { %>
+                                          <% if (cls.phaseLevel === user.phaseLevel) { %>
+                                             <option value="<%= cls.id %>"><%= cls.name %> (Phase <%= cls.phaseLevel %>)</option>
+                                          <% } %>
+                                       <% }) %>
+                                    </select>
+                                    <button type="submit" class="btn btn-primary btn-sm">Assign</button>
+                                 </form>
+                              </td>
+                           </tr>
+                        <% }) %>
+                     <% } else { %>
+                        <tr>
+                           <td colspan="3" class="text-center text-muted">No students in waiting pool.</td>
+                        </tr>
+                     <% } %>
+                  </tbody>
+               </table>
+            </div>
+         </div>
       </div>
 
       <%- include('../partials/footer') %>

@@ -1,0 +1,36 @@
+<%- include('../partials/header', { title: 'Evaluate Student - Puls8' }) %>
+<%- include('../partials/navbar') %>
+
+<div class="container mt-4" style="max-width: 600px;">
+  <h2 class="mb-4">Evaluate Student: <%= student.email %></h2>
+  <%- include('../partials/errorAlert') %>
+
+  <div class="card shadow-sm border-info">
+    <div class="card-body">
+      <form action="/instructor/evaluate/<%= student.id %>" method="POST">
+        
+        <div class="mb-3">
+          <label class="form-label fw-bold">Learning Style</label>
+          <select class="form-select" name="learningStyle">
+            <option value="Visual" <%= student.Profile && student.Profile.learningStyle === 'Visual' ? 'selected' : '' %>>Visual</option>
+            <option value="Auditory" <%= student.Profile && student.Profile.learningStyle === 'Auditory' ? 'selected' : '' %>>Auditory</option>
+            <option value="Kinesthetic" <%= student.Profile && student.Profile.learningStyle === 'Kinesthetic' ? 'selected' : '' %>>Kinesthetic</option>
+            <option value="Unassessed" <%= !student.Profile || student.Profile.learningStyle === 'Unassessed' ? 'selected' : '' %>>Unassessed</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label fw-bold">Grit Level (1-10)</label>
+          <input type="number" class="form-control" name="gritLevel" min="1" max="10" value="<%= student.Profile ? student.Profile.gritLevel : 5 %>">
+        </div>
+
+        <div class="d-flex gap-2">
+           <button type="submit" class="btn btn-info w-100 text-white">Save Evaluation</button>
+           <a href="/instructor" class="btn btn-secondary w-100">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

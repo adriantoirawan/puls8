@@ -1,0 +1,36 @@
+<%- include('../partials/header', { title: 'Add Task - Puls8' }) %>
+<%- include('../partials/navbar') %>
+
+<div class="container mt-4" style="max-width: 600px;">
+  <h2 class="mb-4">Create New Task</h2>
+  <%- include('../partials/errorAlert') %>
+
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <form action="/instructor/tasks/add" method="POST">
+        
+        <div class="mb-3">
+          <label class="form-label fw-bold">Task Name</label>
+          <input type="text" class="form-control" name="name" placeholder="e.g. Sequelize CRUD" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label fw-bold">Phase Level</label>
+          <input type="number" class="form-control" name="phase" min="0" max="3" placeholder="e.g. 1" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label fw-bold">Weight (1 to 100)</label>
+          <input type="number" class="form-control" name="weight" min="1" max="100" placeholder="e.g. 25" required>
+        </div>
+
+        <div class="d-flex gap-2">
+           <button type="submit" class="btn btn-primary w-100">Create Task</button>
+           <a href="/instructor" class="btn btn-secondary w-100">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

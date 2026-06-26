@@ -3,8 +3,10 @@ const { Model } = require("sequelize");
 const bcrypt = require("bcryptjs");
 
 module.exports = (sequelize, DataTypes) => {
+  // [REQ-DB-2-Users-Entity] - Must have email, password, and role attributes
   class User extends Model {
     static associate(models) {
+      // [REQ-DB-3-Associations] - Many-to-Many through Score, 1-to-Many with Class, 1-to-1 with Profile
       User.belongsTo(models.Class, { foreignKey: "classId" });
       User.hasOne(models.Profile, { foreignKey: "userId" });
       User.belongsToMany(models.Task, {
@@ -13,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
 
-    // [REQ: Aplikasi - 3. Instance method atau getter di model]
+    // [REQ-APP-3-Instance-Method] - AI Dossier formatting
     generateDossier() {
       let repeaterStatus = "";
       if (this.isRepeater === true) {
@@ -33,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
       email: {
         type: DataTypes.STRING,
         allowNull: false,
-        // [REQ: Aplikasi - 4. Validasi Sequelize]
+        // [REQ-APP-4-Sequelize-Validation] - Validates presence and format
         validate: {
           notNull: { msg: "Email is required" },
           notEmpty: { msg: "Email cannot be empty" },
@@ -67,7 +69,7 @@ module.exports = (sequelize, DataTypes) => {
       sequelize,
       modelName: "User",
       hooks: {
-        // [REQ: Aplikasi - 6. Hooks]
+        // [REQ-APP-6-Hooks] - Hash password before create
         beforeCreate: (user, options) => {
           const salt = bcrypt.genSaltSync(10);
           user.password = bcrypt.hashSync(user.password, salt);
